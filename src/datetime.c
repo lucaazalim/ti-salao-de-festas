@@ -3,7 +3,7 @@
 #include "datetime.h"
 #include "scan-utils.h"
 
-const char WEEK_DAYS_NAMES[][16] = {"Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sabado", "Domingo"};
+const char WEEK_DAYS_NAMES[][16] = {"Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"};
 
 void createDate(Date *date)
 {
