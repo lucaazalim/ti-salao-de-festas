@@ -1,5 +1,8 @@
 #pragma once
 
+/**
+ * @brief array of strings containing the names of the days of the week
+ */
 extern const char WEEK_DAYS_NAMES[][16];
 
 typedef struct

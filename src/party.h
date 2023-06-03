@@ -3,6 +3,9 @@
 #include "constants.h"
 #include "datetime.h"
 
+/**
+ * @brief enum containing the possible payment statuses
+ */
 enum PaymentStatus
 {
     PAYABLE,

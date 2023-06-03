@@ -35,4 +35,11 @@ void* getLastStructFromFile(char *filename, int sizeOfStruct);
  */
 int appendStructToFile(char *filename, void *value, int sizeOfValue);
 
+/**
+ * @brief update a struct in a file using the index
+ * @param filename the path for the file to be read
+ * @param structPointer the struct to be updated
+ * @param index the index of the struct to be updated
+ * @param sizeOfStruct the size of the struct (sizeof)
+ */
 void updateStructByIndexInFile(char *filename, void *structPointer, int index, int sizeOfStruct);
