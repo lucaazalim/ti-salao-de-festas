@@ -17,6 +17,8 @@ void createCustomer(Customer *customer)
     printf("Informe o telefone do cliente: ");
     scanText(customer->phone, PHONE_LENGTH);
 
+    clearInputBuffer();
+
     printf("Informe da data de nascimento do cliente: \n");
     createDate(&customer->birthDate);
 
