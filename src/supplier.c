@@ -28,5 +28,5 @@ void createSupplier(Supplier *supplier) {
 void printSupplier(Supplier supplier) {
     printf("\tID: %d\n", supplier.id);
     printf("\t\tNome: %s\n", supplier.name);
-    printf("\tTelefone: %s\n", supplier.phone);
+    printf("\t\tTelefone: %s\n", supplier.phone);
 }

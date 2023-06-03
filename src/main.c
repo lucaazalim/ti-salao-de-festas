@@ -141,6 +141,8 @@ void showMenu()
         printf("Informe como você deseja pesquisar: [1 = ID, 2 = Nome] ");
         scanf("%d", &howToSearch);
 
+        clearInputBuffer();
+
         if (whatToSearch == 1)
         {
 
@@ -169,15 +171,17 @@ void showMenu()
             else if (howToSearch == 2)
             {
 
-                char *nameSearch;
+                char nameSearch[CUSTOMER_NAME_LENGTH];
 
                 printf("Informe o trecho do nome do cliente a ser pesquisado: ");
-                scanText(&nameSearch, CUSTOMER_NAME_LENGTH);
+                scanText(nameSearch, CUSTOMER_NAME_LENGTH);
 
                 int amountOfCustomers;
                 Customer *customers = getAllStructsFromFile(CUSTOMER_DATA_FILENAME, sizeof(Customer), &amountOfCustomers);
 
-                int found;
+                int found = 0;
+
+                printf("\n");
 
                 for (int i = 0; i < amountOfCustomers; i++)
                 {
@@ -195,7 +199,7 @@ void showMenu()
 
                 if (!found)
                 {
-                    printf("Não foram encontrados clientes com o nome informado.");
+                    printf("Não foram encontrados clientes com o nome informado.\n");
                 }
 
                 break;
@@ -223,21 +227,23 @@ void showMenu()
                 printf("\n");
                 printSupplier(*supplierPointer);
                 printf("\n");
-                
+
                 break;
             }
             else if (howToSearch == 2)
             {
 
-                char *nameSearch;
+                char nameSearch[SUPPLIER_NAME_LENGTH];
 
                 printf("Informe o trecho do nome do fornecedor a ser pesquisado: ");
-                scanText(&nameSearch, CUSTOMER_NAME_LENGTH);
+                scanText(nameSearch, SUPPLIER_NAME_LENGTH);
 
                 int amountOfSuppliers;
                 Supplier *suppliers = getAllStructsFromFile(SUPPLIER_DATA_FILENAME, sizeof(Supplier), &amountOfSuppliers);
 
-                int found;
+                int found = 0;
+
+                printf("\n");
 
                 for (int i = 0; i < amountOfSuppliers; i++)
                 {
@@ -255,7 +261,7 @@ void showMenu()
 
                 if (!found)
                 {
-                    printf("Não foram encontrados fornecedores com o nome informado.");
+                    printf("Não foram encontrados fornecedores com o nome informado.\n");
                 }
 
                 break;
