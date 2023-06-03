@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "customer.h": "c",
+        "contract.h": "c",
+        "datetime.h": "c",
+        "constants.h": "c",
+        "file-utils.h": "c",
+        "curses.h": "c",
+        "ncurses.h": "c"
+    }
+}
