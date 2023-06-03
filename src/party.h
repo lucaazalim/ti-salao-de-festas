@@ -33,8 +33,21 @@ typedef struct
 
 } Party;
 
+/**
+ * @brief scans the necessary information and creates a new customer
+ * @param party party pointer
+ */
 void createParty(Party *party);
 
+/**
+ * @brief prints all the information of a party
+ * @param party party to be printed
+ */
 void printParty(Party party);
 
+/**
+ * @brief calculates the value (price) of a party based on the invited amount and the appliable discounts
+ * @param party party to be analyzed
+ * @return the value (price) of the party
+ */
 float calculatePartyValue(Party party);

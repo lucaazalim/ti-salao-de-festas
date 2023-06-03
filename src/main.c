@@ -8,7 +8,7 @@
 #include "supplier.h"
 #include "party.h"
 
-void showMenu()
+void menu()
 {
 
     int menuOption;
@@ -360,6 +360,6 @@ int main()
 {
     while (1)
     {
-        showMenu();
+        menu();
     }
 }

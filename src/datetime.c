@@ -7,8 +7,6 @@ const char WEEK_DAYS_NAMES[][16] = {"Segunda-Feira", "Terça-Feira", "Quarta-Fei
 
 void createDate(Date *date)
 {
-    clearInputBuffer();
-
     printf("\tDia: ");
     scanf("%d", &date->day);
 

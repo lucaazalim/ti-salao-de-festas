@@ -76,19 +76,19 @@ void createParty(Party *party)
 
     // Restrição para que festas só iniciem entre 08:00 e 19:00
     if(party->startHour < 8 || party->startHour > 19) {
-        printf("Horário inválido.");
+        printf("As festas devem iniciar entre 8h e 19h.\n");
         return;
     }
 
     // Restrição para que festas aos sábados só ocorram às 12:00 ou às 18:00
     if(party->weekDay == 6 && !(party->startHour == 12 || party->startHour == 18)) {
-        printf("Aos sábados, o horário de início de uma festa deve ser 12:00 ou 18:00.");
+        printf("Aos sábados, o horário de início das festas deve ser às 12h ou às 18h.\n");
         return;
     }
 
     // Restrição para que festas não ocorram ao mesmo tempo
     if(hasPartyTimeConflict(party->date, party->startHour)) {
-        printf("Já existe uma festa marcada para essa data e horário.");
+        printf("Já existe uma festa marcada para essa data e horário.\n");
         return;
     }
 

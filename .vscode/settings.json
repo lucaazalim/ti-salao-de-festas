@@ -8,6 +8,7 @@
         "constants.h": "c",
         "file-utils.h": "c",
         "curses.h": "c",
-        "ncurses.h": "c"
+        "ncurses.h": "c",
+        "supplier.h": "c"
     }
 }
