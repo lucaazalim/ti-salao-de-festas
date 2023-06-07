@@ -6,9 +6,9 @@ OBJDIR = obj
 BINDIR = bin
 
 SRCS = $(wildcard $(SRCDIR)/*.c)
-SRCS := $(filter-out $(SRCDIR)/tests.c $(SRCDIR)/munit.h $(SRCDIR)/munit.c, $(SRCS))
+SRCS := $(filter-out $(SRCDIR)/main.c, $(SRCS))
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
-TARGET = $(BINDIR)/app
+TARGET = $(BINDIR)/tests
 
 .PHONY: all clean
 

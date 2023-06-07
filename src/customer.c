@@ -5,7 +5,7 @@
 #include "scan-utils.h"
 #include "file-utils.h"
 
-void createCustomer(Customer *customer)
+void scanCustomer(Customer *customer)
 {
 
     printf("Informe o nome do cliente: ");
@@ -22,19 +22,24 @@ void createCustomer(Customer *customer)
     printf("Informe da data de nascimento do cliente: \n");
     createDate(&customer->birthDate);
 
+    if(createCustomer(customer)) {
+        printf("Cliente cadastrado com sucesso. (ID: %d)\n", customer->id);
+    } else {
+        printf("Erro ao cadastrar cliente!\n");
+    }
+}
+
+int createCustomer(Customer *customer)
+{
+
     Customer *lastCustomer = getLastStructFromFile(CUSTOMER_DATA_FILENAME, sizeof(Customer));
 
     customer->id = lastCustomer == NULL ? 1 : lastCustomer->id + 1;
 
-    if (appendStructToFile(CUSTOMER_DATA_FILENAME, customer, sizeof(Customer)))
-    {
-        printf("Cliente cadastrado com sucesso. (ID: %d)\n", customer->id);
-    }
-    else
-    {
-        printf("Erro ao cadastrar cliente!\n");
-    }
+    return appendStructToFile(CUSTOMER_DATA_FILENAME, customer, sizeof(Customer));
 }
+
+
 
 void printCustomer(Customer customer)
 {

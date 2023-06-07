@@ -37,7 +37,7 @@ void menu()
     case 1:
     {
         Customer customer;
-        createCustomer(&customer);
+        scanCustomer(&customer);
         break;
     }
 
@@ -72,7 +72,7 @@ void menu()
         }
 
         Party party = *partyPointer;
-        float partyValue = calculatePartyValue(party);
+        float partyValue = calculatePartyValue(party.weekDay, party.invitedAmount, party.installments);
 
         printf("O valor da festa é R$ %.2f.\n", partyValue);
         break;

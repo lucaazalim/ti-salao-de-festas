@@ -40,7 +40,14 @@ typedef struct
  * @brief scans the necessary information and creates a new customer
  * @param party party pointer
  */
-void createParty(Party *party);
+void scanParty(Party *party);
+
+/**
+ * @brief creates a new party
+ * @param party party pointer
+ * @return 1 if the party was created successfully, 0 otherwise
+ */
+int createParty(Party *party);
 
 /**
  * @brief prints all the information of a party
@@ -53,4 +60,4 @@ void printParty(Party party);
  * @param party party to be analyzed
  * @return the value (price) of the party
  */
-float calculatePartyValue(Party party);
+float calculatePartyValue(int weekDay, int invitedAmount, int installments);

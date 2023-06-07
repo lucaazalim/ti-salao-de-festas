@@ -1,6 +1,9 @@
 #include "constants.h"
 #include "datetime.h"
 
+/**
+ * @brief Customer structure
+ */
 typedef struct
 {
     int id;
@@ -11,10 +14,16 @@ typedef struct
 } Customer;
 
 /**
- * @brief scans necessary information and creates a new customer
+ * @brief scans the necessary information and creates a new customer
+*/
+void scanCustomer(Customer *customer);
+
+/**
+ * @brief creates a new customer
  * @param customer customer pointer
+ * @return 1 if the customer was created successfully, 0 otherwise
  */
-void createCustomer(Customer *customer);
+int createCustomer(Customer *customer);
 
 /**
  * @brief prints all the information of a customer

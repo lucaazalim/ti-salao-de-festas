@@ -13,7 +13,8 @@ const int PAYMENT_STATUSES_LENGTH = 3;
 const enum PaymentStatus PAYMENT_STATUSES[] = {PAYABLE, PAID, CANCELLED};
 const char PAYMENT_STATUSES_NAMES[][30] = {"Pagável", "Pago", "Cancelado"};
 
-int hasPartyTimeConflict(Date date, int startTimeHour) {
+int hasPartyTimeConflict(Date date, int startTimeHour)
+{
 
     int amountOfParties;
     Party *parties = getAllStructsFromFile(PARTY_DATA_FILENAME, sizeof(Party), &amountOfParties);
@@ -23,7 +24,8 @@ int hasPartyTimeConflict(Date date, int startTimeHour) {
 
         Party party = parties[i];
 
-        if(!dateEquals(party.date, date)) {
+        if (!dateEquals(party.date, date))
+        {
             continue;
         }
 
@@ -33,35 +35,19 @@ int hasPartyTimeConflict(Date date, int startTimeHour) {
         {
             return 1;
         }
-
     }
 
     return 0;
-
 }
 
-void createParty(Party *party)
+void scanParty(Party *party)
 {
 
     printf("Informe o ID do cliente: ");
     scanf("%d", &party->customerId);
 
-    Customer *customerPointer = getStructByIndexFromFile(CUSTOMER_DATA_FILENAME, party->customerId - 1, sizeof(Customer));
-
-    if(customerPointer == NULL) {
-        printf("O cliente correspondente ao ID informado não existe.\n");
-        return;
-    }
-
     printf("Informe o ID do fornecedor: ");
     scanf("%d", &party->supplierId);
-
-    Supplier *supplierPointer = getStructByIndexFromFile(SUPPLIER_DATA_FILENAME, party->supplierId - 1, sizeof(Supplier));
-
-    if(supplierPointer == NULL) {
-        printf("O fornecedor correspondente ao ID informado não existe.\n");
-        return;
-    }
 
     printf("Informe o número de convidados: ");
     scanf("%d", &party->invitedAmount);
@@ -69,28 +55,8 @@ void createParty(Party *party)
     printf("Informe a data: \n");
     createDate(&party->date);
 
-    party->weekDay = getWeekDayFromDate(party->date);
-
     printf("Informe o horário de início: [8 - 19] ");
     scanf("%d", &party->startHour);
-
-    // Restrição para que festas só iniciem entre 08:00 e 19:00
-    if(party->startHour < 8 || party->startHour > 19) {
-        printf("As festas devem iniciar entre 8h e 19h.\n");
-        return;
-    }
-
-    // Restrição para que festas aos sábados só ocorram às 12:00 ou às 18:00
-    if(party->weekDay == 6 && !(party->startHour == 12 || party->startHour == 18)) {
-        printf("Aos sábados, o horário de início das festas deve ser às 12h ou às 18h.\n");
-        return;
-    }
-
-    // Restrição para que festas não ocorram ao mesmo tempo
-    if(hasPartyTimeConflict(party->date, party->startHour)) {
-        printf("Já existe uma festa marcada para essa data e horário.\n");
-        return;
-    }
 
     clearInputBuffer();
 
@@ -100,13 +66,7 @@ void createParty(Party *party)
     printf("Informe a quantidade de parcelas para pagamento: ");
     scanf("%d", &party->installments);
 
-    party->paymentStatus = PAYABLE;
-
-    Party *lastParty = getLastStructFromFile(PARTY_DATA_FILENAME, sizeof(Party));
-
-    party->id = lastParty == NULL ? 1 : lastParty->id + 1;
-
-    if (appendStructToFile(PARTY_DATA_FILENAME, party, sizeof(Party)))
+    if (createParty(party))
     {
         printf("Festa cadastrada com sucesso. (ID: %d)\n", party->id);
     }
@@ -114,7 +74,57 @@ void createParty(Party *party)
     {
         printf("Erro ao cadastrar festa!\n");
     }
-    
+}
+
+int createParty(Party *party)
+{
+
+    Customer *customerPointer = getStructByIndexFromFile(CUSTOMER_DATA_FILENAME, party->customerId - 1, sizeof(Customer));
+
+    if (customerPointer == NULL)
+    {
+        printf("O cliente correspondente ao ID informado não existe.\n");
+        return 0;
+    }
+
+    Supplier *supplierPointer = getStructByIndexFromFile(SUPPLIER_DATA_FILENAME, party->supplierId - 1, sizeof(Supplier));
+
+    if (supplierPointer == NULL)
+    {
+        printf("O fornecedor correspondente ao ID informado não existe.\n");
+        return 0;
+    }
+
+    party->weekDay = getWeekDayFromDate(party->date);
+
+    // Restrição para que festas só iniciem entre 08:00 e 19:00
+    if (party->startHour < 8 || party->startHour > 19)
+    {
+        printf("As festas devem iniciar entre 8h e 19h.\n");
+        return 0;
+    }
+
+    // Restrição para que festas aos sábados só ocorram às 12:00 ou às 18:00
+    if (party->weekDay == 6 && !(party->startHour == 12 || party->startHour == 18))
+    {
+        printf("Aos sábados, o horário de início das festas deve ser às 12h ou às 18h.\n");
+        return 0;
+    }
+
+    // Restrição para que festas não ocorram ao mesmo tempo
+    if (hasPartyTimeConflict(party->date, party->startHour))
+    {
+        printf("Já existe uma festa marcada para essa data e horário.\n");
+        return 0;
+    }
+
+    party->paymentStatus = PAYABLE;
+
+    Party *lastParty = getLastStructFromFile(PARTY_DATA_FILENAME, sizeof(Party));
+
+    party->id = lastParty == NULL ? 1 : lastParty->id + 1;
+
+    return appendStructToFile(PARTY_DATA_FILENAME, party, sizeof(Party));
 }
 
 void printParty(Party party)
@@ -129,28 +139,28 @@ void printParty(Party party)
     printf("\t\tTema: %s\n", party.theme);
     printf("\t\tQuantidade de parcelas: %d\n", party.installments);
     printf("\t\tStatus de pagamento: %s\n", PAYMENT_STATUSES_NAMES[party.paymentStatus]);
-    printf("\t\tValor: R$ %.2f\n", calculatePartyValue(party));
+    printf("\t\tValor: R$ %.2f\n", calculatePartyValue(party.weekDay, party.invitedAmount, party.installments));
 }
 
-float calculatePartyValue(Party party)
+float calculatePartyValue(int weekDay, int invitedAmount, int installments)
 {
 
     float value;
-    int fromFridayToSunday = party.weekDay == 0 || party.weekDay > 5;
+    int fromFridayToSunday = weekDay == 0 || weekDay > 5;
 
-    if (party.invitedAmount >= 100)
+    if (invitedAmount >= 100)
     {
         value = fromFridayToSunday ? 3999 : 3799;
     }
-    else if (party.invitedAmount >= 80)
+    else if (invitedAmount >= 80)
     {
         value = fromFridayToSunday ? 3499 : 3199;
     }
-    else if (party.invitedAmount >= 50)
+    else if (invitedAmount >= 50)
     {
         value = fromFridayToSunday ? 2299 : 2199;
     }
-    else if (party.invitedAmount >= 30)
+    else if (invitedAmount >= 30)
     {
         value = fromFridayToSunday ? 2099 : 1899;
     }
@@ -160,7 +170,7 @@ float calculatePartyValue(Party party)
     }
 
     // Desconto baseado no número de parcelas
-    float discount = 0.1 / party.installments;
+    float discount = 0.1 / installments;
     value *= (1.0 - discount);
 
     return value;

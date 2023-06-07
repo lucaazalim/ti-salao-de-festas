@@ -100,7 +100,7 @@ int appendStructToFile(char *filename, void *structPointer, int sizeOfStruct)
 
         if (file == NULL)
         {
-            return 1;
+            return 0;
         }
     }
 
