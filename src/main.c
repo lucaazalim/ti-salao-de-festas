@@ -44,14 +44,14 @@ void menu()
     case 2:
     {
         Supplier supplier;
-        createSupplier(&supplier);
+        scanSupplier(&supplier);
         break;
     }
 
     case 3:
     {
         Party party;
-        createParty(&party);
+        scanParty(&party);
         break;
     }
 

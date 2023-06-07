@@ -39,8 +39,6 @@ int createCustomer(Customer *customer)
     return appendStructToFile(CUSTOMER_DATA_FILENAME, customer, sizeof(Customer));
 }
 
-
-
 void printCustomer(Customer customer)
 {
     printf("\tID: %d\n", customer.id);
