@@ -4,10 +4,10 @@
 #include "customer.h"
 #include "supplier.h"
 
-#include "constants.h"
-#include "datetime.h"
-#include "scan-utils.h"
-#include "file-utils.h"
+#include "../constants.h"
+#include "../utils/datetime.h"
+#include "../utils/scan-utils.h"
+#include "../utils/file-utils.h"
 
 const int PAYMENT_STATUSES_LENGTH = 3;
 const enum PaymentStatus PAYMENT_STATUSES[] = {PAYABLE, PAID, CANCELLED};

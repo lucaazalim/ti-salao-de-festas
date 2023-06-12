@@ -5,7 +5,7 @@ SRCDIR = src
 OBJDIR = obj
 BINDIR = bin
 
-SRCS = $(wildcard $(SRCDIR)/*.c)
+SRCS = $(wildcard $(SRCDIR)/**/*.c) $(wildcard $(SRCDIR)/*.c)
 SRCS := $(filter-out $(SRCDIR)/tests.c $(SRCDIR)/munit.h $(SRCDIR)/munit.c, $(SRCS))
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 TARGET = $(BINDIR)/app

@@ -9,6 +9,8 @@
         "file-utils.h": "c",
         "curses.h": "c",
         "ncurses.h": "c",
-        "supplier.h": "c"
+        "supplier.h": "c",
+        "scan-utils.h": "c",
+        "string.h": "c"
     }
 }

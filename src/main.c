@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "file-utils.h"
-#include "scan-utils.h"
-#include "customer.h"
-#include "supplier.h"
-#include "party.h"
+#include "utils/file-utils.h"
+#include "utils/scan-utils.h"
+#include "entities/customer.h"
+#include "entities/supplier.h"
+#include "entities/party.h"
 
 /**
  * @brief scans the party ID and prints the party final value

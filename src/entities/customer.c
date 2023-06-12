@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 #include "customer.h"
-#include "constants.h"
-#include "scan-utils.h"
-#include "file-utils.h"
+#include "../constants.h"
+#include "../utils/scan-utils.h"
+#include "../utils/file-utils.h"
 
 void scanCustomer(Customer *customer)
 {
