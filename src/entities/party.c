@@ -29,9 +29,10 @@ int hasPartyTimeConflict(Date date, int startTimeHour)
             continue;
         }
 
-        int partyEndTime = party.startHour + PARTY_DURATION_HOURS;
+        int blockedWindowStartTime = party.startHour - PARTY_DURATION_HOURS;
+        int blockedWindowEndTime = party.startHour + PARTY_DURATION_HOURS;
 
-        if (startTimeHour >= party.startHour && startTimeHour <= partyEndTime)
+        if (startTimeHour >= blockedWindowStartTime && startTimeHour <= blockedWindowEndTime)
         {
             return 1;
         }
@@ -70,10 +71,7 @@ void scanParty(Party *party)
     {
         printf("Festa cadastrada com sucesso. (ID: %d)\n", party->id);
     }
-    else
-    {
-        printf("Erro ao cadastrar festa!\n");
-    }
+    
 }
 
 int createParty(Party *party)
