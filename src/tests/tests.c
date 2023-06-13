@@ -2,10 +2,10 @@
 #include <string.h>
 
 #include "munit.h"
-#include "utils/file-utils.h"
-#include "entities/customer.h"
-#include "entities/supplier.h"
-#include "entities/party.h"
+#include "../utils/file-utils.h"
+#include "../entities/customer.h"
+#include "../entities/supplier.h"
+#include "../entities/party.h"
 
 Customer testCustomerCreation()
 {
