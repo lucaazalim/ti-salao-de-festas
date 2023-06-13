@@ -312,7 +312,7 @@ void menu()
     printf("\t3. Cadastrar festa\n");
     printf("\t4. Calcular valor da festa\n");
     printf("\t5. Alterar status do pagamento de uma festa\n");
-    printf("\t6. Pesquisar cliente ou fornecedor pelo ID\n");
+    printf("\t6. Pesquisar cliente ou fornecedor pelo ID ou nome\n");
     printf("\t7. Relatório de festas por cliente\n");
     printf("\t8. Relatório de festas por data\n");
     printf("\t9. Sair\n");
