@@ -1,3 +1,9 @@
+/**
+ * @file datetime.h
+ * @brief utility functions and structs related to datetime management
+ * @author Luca Azalim
+*/
+
 #pragma once
 
 /**

@@ -1,3 +1,9 @@
+/**
+ * @file scan-utils.h
+ * @brief utility functions related to scanning data from the user in the terminal
+ * @author Luca Azalim
+*/
+
 #pragma once
 
 /**

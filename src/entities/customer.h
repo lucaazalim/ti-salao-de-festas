@@ -1,3 +1,9 @@
+/**
+ * @file customer.h
+ * @brief functions and structs related to the management of the Customer entity
+ * @author Luca Azalim
+*/
+
 #include "../constants.h"
 #include "../utils/datetime.h"
 

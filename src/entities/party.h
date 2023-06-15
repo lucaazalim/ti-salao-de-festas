@@ -1,3 +1,9 @@
+/**
+ * @file party.h
+ * @brief functions and structs related to the management of the Party entity
+ * @author Luca Azalim
+*/
+
 #pragma once
 
 #include "../constants.h"

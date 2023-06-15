@@ -1,3 +1,9 @@
+/**
+ * @file tests.c
+ * @brief implementation of unit tests
+ * @author Luca Azalim
+*/
+
 #include <stdio.h>
 #include <string.h>
 

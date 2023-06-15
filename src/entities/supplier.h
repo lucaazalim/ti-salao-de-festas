@@ -1,3 +1,9 @@
+/**
+ * @file supplier.h
+ * @brief functions and structs related to the management of the Supplier entity
+ * @author Luca Azalim
+*/
+
 #include "../constants.h"
 
 typedef struct {

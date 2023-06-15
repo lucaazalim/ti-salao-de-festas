@@ -1,3 +1,9 @@
+/**
+ * @file file-utils.h
+ * @brief utility functions related to reading and writing structs from and to binary files
+ * @author Luca Azalim
+*/
+
 #pragma once
 
 /**
